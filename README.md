@@ -17,28 +17,30 @@ objects for processing by the AWS lambda function request handlers.
 
 # EXAMPLE - GreetingExample using AwsApiToLambdaLib
 
-Objective: 
+## OBJECTIVE
 
-This lambda function will receive a request from AWS API Gateway and return
-two types of greetings: Hello and Bye.
+- Create a single lambda function that will receive "hello" and "bye" requests from the AWS API Gateway and return a greeting response.
 
-In API Gateway we will integrate with this lambda function.
-We will POST a "name" for "Hello" and GET a "Bye" by passing "name" as a querystring parameter.
+- In API Gateway we will integrate with this lambda function.
+
+We will POST a "name" for "Hello" and 
+
+GET a "Bye" by passing "name" as a querystring parameter.
+
+
+## STEP 1: CREATE AWS LAMBDA FUNCTION
 
 1) Create a new project
-AWS lambda | AWS lambda Project (.NET Core) 
 
-Name the project GreetingExample 
-
-For blueprint, select "Empty Function"
+AWS lambda | AWS lambda Project (.Net Core) | Empty function
 
 
-2) Go to Manage Nuget packages
+2) Goto Manage Nuget Packages
 
 Under Updates
-	
-	Update "Microsoft.NETCore.App" to v1.1.0
-	
+
+Update "Microsoft.NETCore.App" to v1.1.0
+
 Build to make sure the project builds OK.
 
 Under Browse, search for "AwsApiToLambdaLib"
@@ -58,15 +60,17 @@ public class Function : AwsApiToLambdaLibFunction
 ```
 
 
-4) Create the following three classes that will handle the request (request class, response class and a request handler class)
+4) Create the following three classes that will handle the request (request class, response class and a  request handler class)
 
+```
 // GreetingRequest.cs
 public class GreetingRequest : ApiGatewayInput
 {
     public string Name { get; set; }
 }
+```
 
-
+```
 // GreetingResponse.cs
 public class GreetingResponse
 {
@@ -76,8 +80,9 @@ public class GreetingResponse
 
     public string StackTrace { get; set; }
 }
+```
 
-
+```
 // GreetingHandler.cs
 public class GreetingHandler
 {
@@ -99,15 +104,18 @@ public class GreetingHandler
         };
     }
 }
-
+```
 
 5) Build and deploy GreetingExample to AWS lambda
 
+Make sure to add "Amazon.Lambda.Core" nuget package to GreetingExample project.
+
+Also, add "AWSSDK.Core 3.3.8.1" or later nuget package to GreetingExample project.
 
 
 6) Test the Lambda directly with the following request to the "Hello" method. 
 We will later POST to this method from the API Gateway.
-
+```
 {
     "class-type": "GreetingExample.GreetingHandler, GreetingExample",
     "method-name": "Hello",
@@ -116,20 +124,23 @@ We will later POST to this method from the API Gateway.
         "Name": "Joe"
     }
 }
+```
 
 It should return the following.
-
+```
 {
     "Greeting" : "Hello Joe",
     "Error"    : null,
     "StackTrace" : null
 }
-
+```
 
 Now test the "Bye" method. Note there is no "body-json" in the request.
-The name is passed in the "querystring".
-We will later GET this method from the API Gateway.
 
+The name is passed in the "querystring".
+
+We will later GET this method from the API Gateway.
+```
 {
     "class-type": "GreetingExample.GreetingHandler, GreetingExample",
     "method-name": "Bye",
@@ -140,27 +151,27 @@ We will later GET this method from the API Gateway.
         }
     }
 }
-
+```
 It should return the following.
-
+```
 {
     "Greeting" : "Bye Joe",
     "Error"    : null,
     "StackTrace" : null
 }
-
+```
 
 Now test "bad" input by passing in an empty request.
-
+```
 {}
-
+```
 It should return the following.
-
+```
 {
     "Error" : "class-type not specified in input. Aws API Gateway not configured. Did you configure the application/json mapping template under 'Integration Request'?",
     "StackTrace" : "   at AwsApiToLambdaLib.Function.ResolveType(String typeString, String name)\n   at AwsApiToLambdaLib.Function.FunctionHandler(ApiGatewayInput input, ILambdaContext context)"
 }
-
+```
 
 ## STEP 2: INTEGRATE API GATEWAY WITH THE LAMBDA FUNCTION
 
@@ -419,4 +430,3 @@ You should see the following response.
 - The request transformation and processing information is provided in the "Integration Request" of the API Gateway.
 
 - We used POST (for hello) and GET (for bye).
-
