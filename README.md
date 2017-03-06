@@ -24,7 +24,7 @@ two types of greetings: Hello and Bye.
 In API Gateway we will integrate with this lambda function.
 We will POST a "name" for "Hello" and GET a "Bye" by passing "name" as a querystring parameter.
 
-1. Create a new project
+1) Create a new project
 AWS lambda | AWS lambda Project (.NET Core) 
 
 Name the project GreetingExample 
@@ -32,7 +32,7 @@ Name the project GreetingExample
 For blueprint, select "Empty Function"
 
 
-2. Go to Manage Nuget packages
+2) Go to Manage Nuget packages
 
 Under Updates
 	
