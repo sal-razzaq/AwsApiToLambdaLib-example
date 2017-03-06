@@ -57,7 +57,7 @@ public class Function : AwsApiToLambdaLibFunction
 ```
 
 
-4. Create the following three classes that will handle the request (request class, response class and a request handler class)
+4) Create the following three classes that will handle the request (request class, response class and a request handler class)
 
 // GreetingRequest.cs
 public class GreetingRequest : ApiGatewayInput
@@ -100,11 +100,11 @@ public class GreetingHandler
 }
 
 
-5. Build and deploy GreetingExample to AWS lambda
+5) Build and deploy GreetingExample to AWS lambda
 
 
 
-7. Test the Lambda directly with the following request to the "Hello" method. 
+6) Test the Lambda directly with the following request to the "Hello" method. 
 We will later POST to this method from the API Gateway.
 
 {
