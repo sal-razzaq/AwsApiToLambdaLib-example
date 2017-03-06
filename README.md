@@ -108,10 +108,6 @@ public class GreetingHandler
 
 5) Build and deploy GreetingExample to AWS lambda
 
-Make sure to add "Amazon.Lambda.Core" nuget package to GreetingExample project.
-
-Also, add "AWSSDK.Core 3.3.8.1" or later nuget package to GreetingExample project.
-
 
 6) Test the Lambda directly with the following request to the "Hello" method. 
 We will later POST to this method from the API Gateway.
