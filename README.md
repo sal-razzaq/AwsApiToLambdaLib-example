@@ -30,7 +30,7 @@ GET a "Bye" by passing "name" as a querystring parameter.
 
 ## STEP 1: CREATE AWS LAMBDA FUNCTION
 
-1) Create a new project
+1) Create a new project called "GreetingExample" 
 
 AWS lambda | AWS lambda Project (.Net Core) | Empty function
 
