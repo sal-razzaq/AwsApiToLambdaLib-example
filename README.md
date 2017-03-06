@@ -1,20 +1,21 @@
-	# AwsApiToLambdaLib-example
+# AwsApiToLambdaLib-example
 Demonstrates how to use AwsApiToLambdaLib nuget package for routing AWS API Gateway requests to desired .Net class methods in an AWS .Net Core Lambda Function for processing.
 
 
-== SUMMARY - AwsApiToLambdaLib ==
+# AwsApiToLambdaLib
 
-- Problem: I don't want to write multiple AWS Lambda functions to handle different web requests from AWS API Gateway.
+- This framework routes requests received by AWS API Gateway to a specified .Net class method in a single AWS Lambda function for processing.
 
-- This framework routes requests received by AWS Api Gateway to a specified .Net class in a single AWS Lambda function for processing.
+- This framework allows a single lambda function to handle different request types
+based on the API Gateway endpoint configuration.
+The request forwarding/processing information in provided declaratively in 
+the AWS API Gateway configuration using templates.
 
-- This framework allows a single lambda function to handle different request types based on the Api Gateway endpoint configuration.
-The request forwarding/processing information in provided declaratively in the AWS Api Gateway configuration using templates.
-
-- The framework also takes care of deserializing requests into .Net request objects for processing by the AWS lambda function request handlers.
+- The framework also takes care of deserializing requests into .Net request 
+objects for processing by the AWS lambda function request handlers.
 
 
-== EXAMPLE - GreetingExample ==
+# EXAMPLE - GreetingExample using AwsApiToLambdaLib
 
 Objective: 
 
